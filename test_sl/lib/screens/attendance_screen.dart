@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import 'package:test_sl/models/user_model.dart';
+import 'package:test_sl/screens/classes_screen.dart';
+import 'package:test_sl/screens/marks_screen.dart';
 import 'package:test_sl/services/attendance_service.dart';
 import 'package:test_sl/services/db_service.dart';
 
@@ -103,6 +105,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               ),
             ),
             Container(
+              margin: const EdgeInsets.only(top: 5),
               alignment: Alignment.centerLeft,
               child: Text(
                 DateFormat("dd MMMM yyyy").format(DateTime.now()), 
@@ -112,6 +115,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               stream: Stream.periodic(const Duration(seconds: 1)),
               builder: (context, snapshot) {
                 return Container(
+                  margin: const EdgeInsets.only(top: 5),
                   alignment: Alignment.centerLeft,
                   child: Text(
                     DateFormat("hh:mm:ss a").format(DateTime.now()), 
@@ -120,7 +124,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               }
             ),
             Container(
-              margin: const EdgeInsets.only(top: 25),
+              margin: const EdgeInsets.only(top: 15),
               child: Builder(builder: (context) {
                 return SlideAction(
                   text: attendanceService.attendanceModel?.checkIn == null ? "Slide to Check in" : "Slide to Check Out",
@@ -138,6 +142,72 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   },
                 );
               }),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 25,),
+              alignment: Alignment.centerLeft,
+              child: const Text("Your Agenda", style: TextStyle(fontSize: 20),),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 25, bottom: 12),
+              height: 250,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 196, 255, 198),
+                boxShadow: [BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10,
+                  offset: Offset(2, 2)
+                )
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(20))
+              ),
+              child:Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: SizedBox(
+                    width: 150,
+                    height: 200,
+                    child: ElevatedButton(
+                      onPressed: (){
+                         // Navigate to the second screen when the button is pressed
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const ClassesScreen()),
+                          );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      child: const Text("Classes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    ),
+                  ),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: SizedBox(
+                    width: 150,
+                    height: 200,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        // Navigate to the second screen when the button is pressed
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const MarksScreen()),
+                          );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      child: const Text("Marks", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    ),
+                  ),
+                ),
+                ],
+              ),
             ),
           ],
         ),
