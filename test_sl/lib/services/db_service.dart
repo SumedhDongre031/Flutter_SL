@@ -64,4 +64,24 @@ class DbService extends ChangeNotifier {
       notifyListeners();
     //}
   }
+
+  Future insertUpdateClassName(String id,
+      String className, BuildContext context) async {
+    try {
+      if (className == "") {
+        throw ("All Fields are required!");
+      }
+      //else if ()
+      await _supabase.from(Constants.testalottedTable).insert({
+      'id': id,
+      'className': className,
+    });
+    } catch (e) {
+      if(context.mounted){
+        Utils.showSnackBar(e.toString(), context, color: Colors.red);
+      } 
+    }
+  }
+
+
 }
