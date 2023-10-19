@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_sl/screens/classview_component.dart';
 
 class ClassesScreen extends StatefulWidget {
   const ClassesScreen({super.key});
@@ -12,7 +13,11 @@ class _ClassesScreenState extends State<ClassesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Center(child: Text("Classes")),
-      );
+      body: ListView(
+        children: const [
+          ClassViewComponent(className: 'Class 10',),
+          
+        ],),
+    );
   }
 }

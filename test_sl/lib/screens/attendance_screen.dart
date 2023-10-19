@@ -35,7 +35,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.only(top: 32),
+              margin: const EdgeInsets.only(top: 40),
               child: const Text("Welcome", style: TextStyle(color: Colors.black54, fontSize: 30),),
             ),
             Consumer<DbService>(
@@ -56,7 +56,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 });
             }),
             Container(
-              margin: const EdgeInsets.only(top: 32),
+              margin: const EdgeInsets.only(top: 25),
               alignment: Alignment.centerLeft,
               child: const Text("Today's Status", style: TextStyle(fontSize: 20),),
             ),

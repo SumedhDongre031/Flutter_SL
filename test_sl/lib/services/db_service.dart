@@ -19,6 +19,16 @@ class DbService extends ChangeNotifier {
     return 'SL$randomString';
   }
 
+// Future<void> fetchData() async {
+//     final response = await _supabase.from(table)
+//     if (response.error == null) {
+//       setState(() {
+//         classNames = response.data.map((entry) => entry["class_name"] as String).toList();
+//       });
+//     }
+//   }
+
+
   Future insertNewUser(String email, var id) async {
     await _supabase.from(Constants.teststudentTable).insert({
       'id': id,
